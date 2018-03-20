@@ -1,0 +1,20 @@
+[0;1;31m●[0m mariadb.service - MariaDB 10.1.30 database server
+   Loaded: loaded (/lib/systemd/system/mariadb.service; enabled; vendor preset: enabled)
+   Active: [0;1;31mfailed[0m (Result: timeout) since Sun 2018-03-18 16:48:23 -03; 26s ago
+     Docs: man:mysqld(8)
+           https://mariadb.com/kb/en/library/systemd/
+  Process: 32465 ExecStart=/usr/sbin/mysqld $MYSQLD_OPTS $_WSREP_NEW_CLUSTER $_WSREP_START_POSITION [0;1;31m(code=exited, status=1/FAILURE)[0m
+  Process: 32377 ExecStartPre=/bin/sh -c [ ! -e /usr/bin/galera_recovery ] && VAR= ||   VAR=`/usr/bin/galera_recovery`; [ $? -eq 0 ]   && systemctl set-environment _WSREP_START_POSITION=$VAR || exit 1 (code=exited, status=0/SUCCESS)
+  Process: 32366 ExecStartPre=/bin/sh -c systemctl unset-environment _WSREP_START_POSITION (code=exited, status=0/SUCCESS)
+  Process: 32354 ExecStartPre=/usr/bin/install -m 755 -o mysql -g root -d /var/run/mysqld (code=exited, status=0/SUCCESS)
+ Main PID: 32465 (code=exited, status=1/FAILURE)
+   Status: "MariaDB server is down"
+      CPU: 467ms
+
+mar 18 16:46:11 gregory-MS-1454 systemd[1]: Starting MariaDB 10.1.30 database server...
+mar 18 16:46:12 gregory-MS-1454 mysqld[32465]: 2018-03-18 16:46:12 140054249701312 [Note] /usr/sbin/mysqld (mysqld 10.1.30-MariaDB-0ubuntu0.17.10.1) starting as process 32465 ...
+mar 18 16:47:42 gregory-MS-1454 systemd[1]: [0;1;39mmariadb.service: Start operation timed out. Terminating.[0m
+mar 18 16:48:23 gregory-MS-1454 systemd[1]: [0;1;39mmariadb.service: Main process exited, code=exited, status=1/FAILURE[0m
+mar 18 16:48:23 gregory-MS-1454 systemd[1]: [0;1;31mFailed to start MariaDB 10.1.30 database server.[0m
+mar 18 16:48:23 gregory-MS-1454 systemd[1]: [0;1;39mmariadb.service: Unit entered failed state.[0m
+mar 18 16:48:23 gregory-MS-1454 systemd[1]: [0;1;39mmariadb.service: Failed with result 'timeout'.[0m
