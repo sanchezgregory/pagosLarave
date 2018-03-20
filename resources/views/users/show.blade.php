@@ -24,8 +24,11 @@
 @endsection
 
 @section('sidebar')
-    <h1>Cant de Favoritos del usuario:</h1>
-        {{ count($usersfav) }}
+    <h1>Favoritos del usuario: {{ count($usersfav) }}</h1>
+
+    @foreach($usersfav as $item)
+        <li>{{ $item->username }}</li>
+        @endforeach
     <hr>
     Elegir otros:
     <p></p>
