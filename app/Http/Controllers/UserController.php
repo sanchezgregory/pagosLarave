@@ -22,18 +22,12 @@ class UserController extends Controller
         $user = User::findOrFail($id);
         $title = "Detalles del usuario:";
 
-        $usersfav = User::whereIn('id', function($query) use ($id) {
-            $query->select('favoriteuser')
-                ->from('favoriteusers')
-                ->where('user_id','=',$id);
-        })->get();
+        $usersfav = new User();
+        $usersfav->getUsersFavorite($id);
 
-        $usersNotFav = User::whereNotIn('id', function($query) use ($id) {
-                        $query->select('favoriteuser')
-                            ->from('favoriteusers')
-                            ->where('user_id','=',$id);
-                    })->get();
-
+        $usersNotFav = new User();
+        $usersNotFav->getNotFavoriteUsers($id);
+        
 
         return view('users.show', compact('user', 'title', 'usersfav', 'usersNotFav'));
     }
