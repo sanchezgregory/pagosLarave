@@ -11,8 +11,14 @@
 |
 */
 
+use App\User;
+
 Route::get('/', function () {
-    return view('welcome');
+    $title = "Usuarios registrados";
+
+    $users = User::with('payments')->get();
+
+    return view('users.index', compact('users','title'));
 });
 
 // Usuarios
